@@ -1,7 +1,7 @@
 <?php
 /** @var $car \App\Model\Car */
 /** @var $router \App\Service\Router */
-?>
+ob_start(); ?>
 
 <h1><?= htmlspecialchars($car->getMake() . ' ' . $car->getModel()) ?></h1>
 <p>Year: <?= htmlspecialchars($car->getYear()) ?></p>
@@ -15,3 +15,7 @@
 <a href="<?= $router->generatePath('car-edit', ['id' => $car->getId()]) ?>">Edit</a>
 <a href="<?= $router->generatePath('car-delete', ['id' => $car->getId()]) ?>">Delete</a>
 <a href="<?= $router->generatePath('car-index') ?>">Back to list</a>
+
+<?php $main = ob_get_clean();
+
+include __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'base.html.php';
